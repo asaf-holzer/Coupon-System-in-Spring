@@ -11,6 +11,7 @@ import com.asafh.couponsystem.beans.Category;
 import com.asafh.couponsystem.beans.Company;
 import com.asafh.couponsystem.beans.Coupon;
 import com.asafh.couponsystem.exceptions.DeniedException;
+import com.asafh.couponsystem.exceptions.LoginDeniedExption;
 
 
 @Service
@@ -36,11 +37,16 @@ public class CompanyService extends ClientService {
 	}
 
 	@Override
-	public boolean login(String email, String password) {
-		return companyRepository.existsByEmailAndPassword(email, password);
+	public boolean login(String email, String password) throws LoginDeniedExption {
+		if (!companyRepository.existsByEmailAndPassword(email, password)) {
+			throw new LoginDeniedExption();
+		}
+		companyID=companyRepository.findByEmailAndPassword(email, password).getId();
+		System.out.println("company logged in successfully" +this.companyID);
+		return true;
 	}
 
-	public void addCoupon(Coupon coupon) throws DeniedException {
+	public Coupon addCoupon(Coupon coupon) throws DeniedException {
 		List<Coupon> resultCoupons = couponRepository.findAll();
 		for (Coupon coupon2 : resultCoupons) {
 			if (coupon2.getCompanyID() == coupon.getCompanyID() && coupon2.getTitle().equals(coupon.getTitle())) {
@@ -55,10 +61,11 @@ public class CompanyService extends ClientService {
 		List<Coupon> resultCoupons2 = getCompanyCoupons();
 		tempCompany.setCoupons(resultCoupons2);
 		companyRepository.saveAndFlush(tempCompany);
+		return coupon;
 
 	}
 
-	public void updateCoupon(Integer couponID, Coupon coupon) throws DeniedException  {
+	public Coupon updateCoupon(Integer couponID, Coupon coupon) throws DeniedException  {
 		Coupon coup = couponRepository.getOne(couponID);
 		if (coupon.getId() != couponID || coupon.getCompanyID() != couponRepository.getOne(couponID).getCompanyID()) {
 			throw new DeniedException("sorry... you can't update the coupon_id or company");
@@ -88,13 +95,14 @@ public class CompanyService extends ClientService {
 			coup.setImage(coupon.getImage());
 		}
 
-		couponRepository.saveAndFlush(coupon);
+		return couponRepository.saveAndFlush(coupon);
 	}
 
 	@Transactional
-	public void deleteCoupon(int couponID) {
+	public int deleteCoupon(int couponID) {
 		customerRepository.deleteFromCustomer_coupons(couponID);
 		couponRepository.deleteById(couponID);
+		return couponID;
 	}
 
 	public List<Coupon> getCompanyCoupons() {
@@ -134,5 +142,7 @@ public class CompanyService extends ClientService {
 	public Company getcompanyDetails() {
 		return companyRepository.getOne(companyID);
 	}
+	
+	
 
 }

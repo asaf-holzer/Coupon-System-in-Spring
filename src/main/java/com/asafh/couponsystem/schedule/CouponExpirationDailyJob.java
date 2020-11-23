@@ -23,8 +23,8 @@ public class CouponExpirationDailyJob {
 		return new Date(yyyy - 1900, mm - 1, dd + 1);
 	}
 
-	@Scheduled(initialDelay = 10 * 1000, fixedRate = 1000 * 20)
-	@Transactional
+//	@Scheduled(initialDelay = 10 * 1000, fixedRate = 1000 * 60 *60*24)
+//	@Transactional
 	public void dailyTask() {
 
 		System.out.println("update coupon #5 end date to be expired...");

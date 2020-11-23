@@ -13,7 +13,7 @@ import com.asafh.couponsystem.sequrity.LoginManager;
 import com.asafh.couponsystem.utils.BeautyTable;
 import com.asafh.couponsystem.utils.PrintLines;
 import com.asafh.couponsystem.utils.PrintTitles;
-@Component
+//@Component
 @Order(7)
 public class TestLoginManagerAsCompany implements CommandLineRunner {
 
@@ -31,7 +31,8 @@ public class TestLoginManagerAsCompany implements CommandLineRunner {
 		//Test bad login
 		System.out.println("Test bad login");
 		try {
-			companyService = (CompanyService) loginManager.Login("pepsi@cola.com", "1234", ClientType.Company);
+			String token=  loginManager.login("pepsi@cola.com", "1234", ClientType.Company);
+	//		companyService = (CompanyService) loginManager.login("pepsi@cola.com", "1234", ClientType.Company);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
@@ -39,7 +40,8 @@ public class TestLoginManagerAsCompany implements CommandLineRunner {
 		//Test good login
 		System.out.println("Test good login");
 		try {
-			companyService = (CompanyService) loginManager.Login("pepsi@cola.com", "12346", ClientType.Company);
+			String token=loginManager.login("pepsi@cola.com", "12346", ClientType.Company);
+			//companyService = (CompanyService) loginManager.login("pepsi@cola.com", "12346", ClientType.Company);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}

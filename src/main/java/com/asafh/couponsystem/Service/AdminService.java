@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.security.auth.login.LoginException;
+
 import org.springframework.stereotype.Service;
 
 import com.asafh.couponsystem.beans.Company;
@@ -11,6 +13,7 @@ import com.asafh.couponsystem.beans.Company_Coupons;
 import com.asafh.couponsystem.beans.Coupon;
 import com.asafh.couponsystem.beans.Customer;
 import com.asafh.couponsystem.exceptions.DeniedException;
+import com.asafh.couponsystem.exceptions.LoginDeniedExption;
 import com.asafh.couponsystem.exceptions.NotExistExeption;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -23,14 +26,15 @@ public class AdminService extends ClientService {
 	}
 
 	@Override
-	public boolean login(String email, String password) {
+	public boolean login(String email, String password) throws LoginDeniedExption {
 		if (email.equals("admin@admin.com") && password.equals("admin")) {
 			return true;
 		}
-		return false;
+		throw new LoginDeniedExption();
+		
 	}
 
-	public void addCompany(Company company) throws DeniedException {
+	public Company addCompany(Company company) throws DeniedException {
 		List<Company> result = companyRepository.findAll();
 		for (Company company2 : result) {
 			if (company2.getName().equals(company.getName()) || company2.getEmail().equals(company.getEmail())) {
@@ -38,10 +42,10 @@ public class AdminService extends ClientService {
 			}
 		}
 
-		companyRepository.save(company);
+		return companyRepository.save(company);
 	}
 
-	public void updateCompany(int companyID, Company company) throws DeniedException  {
+	public Company updateCompany(int companyID, Company company) throws DeniedException  {
 		if (companyRepository.findById(companyID).equals(Optional.empty())) {
 			throw new DeniedException("you cant update : a company with this id is not exist");
 		}
@@ -49,11 +53,11 @@ public class AdminService extends ClientService {
 		if (company.getId() != comp.getId() || !company.getName().equals(comp.getName())) {
 			throw new DeniedException("you cant update id or name");
 		}
-		companyRepository.saveAndFlush(company);
+		return companyRepository.saveAndFlush(company);
 	}
 
 	@Transactional
-	public void deleteCompany(int id) throws NotExistExeption {
+	public int deleteCompany(int id) throws NotExistExeption {
 		if (companyRepository.findById(id).equals(Optional.empty())) {
 			throw new NotExistExeption("the compamy didnt deleted: a company with this id is not exist");
 		}
@@ -65,6 +69,7 @@ public class AdminService extends ClientService {
 		}
 
 		companyRepository.deleteById(id);
+		return id;
 	}
 	
 	
@@ -80,7 +85,7 @@ public class AdminService extends ClientService {
 		return companyRepository.getOne(id);
 	}
 
-	public void addCustomer(Customer customer) throws DeniedException  {
+	public Customer addCustomer(Customer customer) throws DeniedException  {
 		List<Customer> result = customerRepository.findAll();
 		for (Customer custmer2 : result) {
 			if (custmer2.getEmail().equals(customer.getEmail())) {
@@ -88,10 +93,10 @@ public class AdminService extends ClientService {
 			}
 		}
 
-		customerRepository.save(customer);
+		return customerRepository.save(customer);
 	}
 
-	public void updateCustomer(int customerID, Customer customer) throws DeniedException  {
+	public Customer updateCustomer(int customerID, Customer customer) throws DeniedException  {
 		if (customerRepository.findById(customerID).equals(Optional.empty())) {
 			throw new DeniedException("you cant update : a customer with this id is not exist");
 		}
@@ -99,10 +104,10 @@ public class AdminService extends ClientService {
 		if (customer.getId() != cust.getId()) {
 			throw new DeniedException("you cant update id");
 		}
-		customerRepository.saveAndFlush(customer);
+		return customerRepository.saveAndFlush(customer);
 	}
 
-	public void deleteCustomer(int id) throws DeniedException {
+	public int deleteCustomer(int id) throws DeniedException {
 		if (customerRepository.findById(id).equals(Optional.empty())) {
 			throw new DeniedException("the customer didnt deleted: a customer with this id is not exist");
 		}
@@ -110,6 +115,7 @@ public class AdminService extends ClientService {
 		temp.setCoupons(new ArrayList<Coupon>());
 		customerRepository.saveAndFlush(temp);
 		customerRepository.deleteById(id);
+		return id;
 	}
 
 	public List<Customer> getAllCustomers() {

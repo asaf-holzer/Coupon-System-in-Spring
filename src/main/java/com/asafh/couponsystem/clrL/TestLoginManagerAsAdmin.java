@@ -15,7 +15,7 @@ import com.asafh.couponsystem.utils.PrintTitles;
 
 import lombok.experimental.PackagePrivate;
 
-@Component
+//@Component
 @Order(6)
 public class TestLoginManagerAsAdmin implements CommandLineRunner {
 
@@ -33,7 +33,8 @@ public class TestLoginManagerAsAdmin implements CommandLineRunner {
 		//Test bad login
 		System.out.println("Test bad login");
 		try {
-			adminService = (AdminService) loginManager.Login("admim@admin.com", "admin", ClientType.Administrator);
+			String token=loginManager.login("admim@admin.com", "admin", ClientType.Administrator);
+		//	adminService = loginManager.login("admim@admin.com", "admin", ClientType.Administrator);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
@@ -41,7 +42,8 @@ public class TestLoginManagerAsAdmin implements CommandLineRunner {
 		//Test good login
 		System.out.println("Test good login");
 		try {
-			adminService = (AdminService) loginManager.Login("admin@admin.com", "admin", ClientType.Administrator);
+			String token= loginManager.login("admin@admin.com", "admin", ClientType.Administrator);
+	//		adminService = (AdminService) loginManager.login("admin@admin.com", "admin", ClientType.Administrator);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}

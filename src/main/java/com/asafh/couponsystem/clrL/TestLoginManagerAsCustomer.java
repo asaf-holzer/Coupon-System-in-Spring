@@ -14,7 +14,7 @@ import com.asafh.couponsystem.utils.BeautyTable;
 import com.asafh.couponsystem.utils.PrintLines;
 import com.asafh.couponsystem.utils.PrintTitles;
 
-@Component
+//@Component
 @Order(8)
 public class TestLoginManagerAsCustomer implements CommandLineRunner {
 
@@ -31,7 +31,8 @@ public class TestLoginManagerAsCustomer implements CommandLineRunner {
 		// Test bad login
 		System.out.println("Test bad login");
 		try {
-			customerService = (CustomerService) loginManager.Login("Moshe@Cohen.com", "1234", ClientType.Customer);
+			String token=  loginManager.login("Moshe@Cohen.com", "1234", ClientType.Customer);
+//			customerService = (CustomerService) loginManager.login("Moshe@Cohen.com", "1234", ClientType.Customer);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
@@ -39,7 +40,8 @@ public class TestLoginManagerAsCustomer implements CommandLineRunner {
 		// Test good login
 		System.out.println("Test good login");
 		try {
-			customerService = (CustomerService) loginManager.Login("Moshe@Cohen.com", "2345", ClientType.Customer);
+			String token= loginManager.login("Moshe@Cohen.com", "2345", ClientType.Customer);
+//			customerService = (CustomerService) loginManager.login("Moshe@Cohen.com", "2345", ClientType.Customer);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}

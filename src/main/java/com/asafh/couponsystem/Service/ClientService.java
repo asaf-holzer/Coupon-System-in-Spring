@@ -1,9 +1,12 @@
 package com.asafh.couponsystem.Service;
 
+import javax.security.auth.login.LoginException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import com.asafh.couponsystem.exceptions.LoginDeniedExption;
 import com.asafh.couponsystem.repo.CompanyRepository;
 import com.asafh.couponsystem.repo.CouponRepository;
 import com.asafh.couponsystem.repo.CustomerRepository;
@@ -28,6 +31,6 @@ public abstract class ClientService {
 		
 	}
 	
-	public abstract boolean login(String email, String password);
+	public abstract boolean login(String email, String password) throws LoginDeniedExption ;
 	
 }

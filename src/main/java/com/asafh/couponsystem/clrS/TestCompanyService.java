@@ -40,10 +40,10 @@ public class TestCompanyService implements CommandLineRunner {
 		coupon1.setTitle("aaa");
 		coupon1.setDescription("bla bla....");
 		coupon1.setStartDate(realDate(27, 8, 2020));
-		coupon1.setEndDate(realDate(27, 9, 2020));
+		coupon1.setEndDate(realDate(27, 9, 2021));
 		coupon1.setAmount(100);
 		coupon1.setPrice(10.9);
-		coupon1.setImage("http://abcdefg....");
+		coupon1.setImage("../../../assets/images/SUMMER-VACATION.jpg");
 
 		Coupon coupon2 = new Coupon();
 		coupon2.setCompanyID(2);
@@ -51,10 +51,10 @@ public class TestCompanyService implements CommandLineRunner {
 		coupon2.setTitle("bbb");
 		coupon2.setDescription("bla bla bla....");
 		coupon2.setStartDate(realDate(28, 8, 2020));
-		coupon2.setEndDate(realDate(28, 9, 2020));
+		coupon2.setEndDate(realDate(28, 9, 2021));
 		coupon2.setAmount(80);
 		coupon2.setPrice(11.9);
-		coupon2.setImage("http://abcdefghijk....");
+		coupon2.setImage("../../../assets/images/restaurant.jpg");
 
 		Coupon coupon3 = new Coupon();
 		coupon3.setCompanyID(1);
@@ -62,10 +62,10 @@ public class TestCompanyService implements CommandLineRunner {
 		coupon3.setTitle("ccc");
 		coupon3.setDescription("bla bla bly....");
 		coupon3.setStartDate(realDate(29, 8, 2020));
-		coupon3.setEndDate(realDate(29, 9, 2020));
+		coupon3.setEndDate(realDate(29, 9, 2021));
 		coupon3.setAmount(90);
 		coupon3.setPrice(13.9);
-		coupon3.setImage("http://abcdefghijklmnop....");
+		coupon3.setImage("../../../assets/images/restaurant.jpg");
 
 		Coupon coupon4 = new Coupon();
 		coupon4.setCompanyID(2);
@@ -73,10 +73,10 @@ public class TestCompanyService implements CommandLineRunner {
 		coupon4.setTitle("ddd");
 		coupon4.setDescription("blabla bla bly....");
 		coupon4.setStartDate(realDate(29, 9, 2020));
-		coupon4.setEndDate(realDate(29, 10, 2020));
+		coupon4.setEndDate(realDate(29, 10, 2021));
 		coupon4.setAmount(20);
 		coupon4.setPrice(11.9);
-		coupon4.setImage("http://asaf....");
+		coupon4.setImage("../../../assets/images/cocacola_electricity.jpg");
 
 		Coupon coupon5 = new Coupon();
 		coupon5.setCompanyID(1);
@@ -84,10 +84,10 @@ public class TestCompanyService implements CommandLineRunner {
 		coupon5.setTitle("ccc");
 		coupon5.setDescription("bla bla bly bly....");
 		coupon5.setStartDate(realDate(16, 8, 2020));
-		coupon5.setEndDate(realDate(16, 9, 2020));
+		coupon5.setEndDate(realDate(26, 9, 2021));
 		coupon5.setAmount(200);
 		coupon5.setPrice(30.9);
-		coupon5.setImage("http://abcdefghijklmnop....");
+		coupon5.setImage("../../../assets/images/restaurant.jpg");
 
 		Coupon coupon6 = new Coupon();
 		coupon6.setCompanyID(3);
@@ -95,10 +95,10 @@ public class TestCompanyService implements CommandLineRunner {
 		coupon6.setTitle("ccc");
 		coupon6.setDescription("bla bly bla bly....");
 		coupon6.setStartDate(realDate(1, 8, 2020));
-		coupon6.setEndDate(realDate(15, 9, 2020));
+		coupon6.setEndDate(realDate(25, 9, 2021));
 		coupon6.setAmount(190);
 		coupon6.setPrice(3.9);
-		coupon6.setImage("http://abcdefghijklmnop....");
+		coupon6.setImage("../../../assets/images/SUMMER-VACATION.jpg");
 
 		Coupon coupon7 = new Coupon();
 		coupon7.setCompanyID(4);
@@ -106,10 +106,10 @@ public class TestCompanyService implements CommandLineRunner {
 		coupon7.setTitle("abc");
 		coupon7.setDescription("bla bla....");
 		coupon7.setStartDate(realDate(27, 8, 2020));
-		coupon7.setEndDate(realDate(27, 9, 2020));
+		coupon7.setEndDate(realDate(27, 9, 2021));
 		coupon7.setAmount(110);
 		coupon7.setPrice(18.9);
-		coupon7.setImage("http://abcdefgou....");
+		coupon7.setImage("../../../assets/images/SUMMER-VACATION.jpg");
 
 		Coupon coupon8 = new Coupon();
 		coupon8.setCompanyID(4);
@@ -117,10 +117,10 @@ public class TestCompanyService implements CommandLineRunner {
 		coupon8.setTitle("rty");
 		coupon8.setDescription("bla bla....");
 		coupon8.setStartDate(realDate(27, 8, 2020));
-		coupon8.setEndDate(realDate(27, 9, 2020));
+		coupon8.setEndDate(realDate(27, 9, 2021));
 		coupon8.setAmount(20);
 		coupon8.setPrice(2.9);
-		coupon8.setImage("http://abcdefgrrrr....");
+		coupon8.setImage("../../../assets/images/restaurant.jpg");
 
 		Coupon coupon9 = new Coupon();
 		coupon9.setCompanyID(6);
@@ -128,10 +128,10 @@ public class TestCompanyService implements CommandLineRunner {
 		coupon9.setTitle("title");
 		coupon9.setDescription("bla bla....");
 		coupon9.setStartDate(realDate(27, 8, 2020));
-		coupon9.setEndDate(realDate(27, 9, 2020));
+		coupon9.setEndDate(realDate(27, 9, 2021));
 		coupon9.setAmount(5);
 		coupon9.setPrice(4.9);
-		coupon9.setImage("http://abcdefgwwww....");
+		coupon9.setImage("../../../assets/images/restaurant.jpg");
 
 
 		companyService.setCompanyID(1);
@@ -202,7 +202,7 @@ public class TestCompanyService implements CommandLineRunner {
 		coupon1.setPrice(10000.9);
 		coupon1.setTitle("wert");
 		coupon1.setStartDate(realDate(21, 8, 2020));
-		coupon1.setEndDate(realDate(21, 9, 2020));
+		coupon1.setEndDate(realDate(7, 10, 2021));
 
 		companyService.updateCoupon(1, coupon1);
 		BeautyTable.tableWithLinesCoupons(companyService.getCompanyCoupons());
